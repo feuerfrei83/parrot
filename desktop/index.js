@@ -55,19 +55,21 @@ console.log('Listening, press Ctrl+C to stop.');
 const kind = 'Transcripts';
 
 function storeTranscript(data) {
-	console.log('storing transcript: ' + JSON.stringify(data));
-	var now = (new Date()).getTime();
-	const transcriptKey = datastore.key([kind, now]);
-	var task = {
-	  key: transcriptKey,
-	  data: {
-		timestamp: now,
-	    description: data
-	  }
-	};
-	datastore.save(task)
-			 .then(() => {
-			    console.log(`Saved ${task.key.name}: ${task.data.description}`);
-			 });
-
+	data = data.trim();
+	data = data.replace(/\s+/g, ' ');
+	if(data.length > 0) {
+		var now = (new Date()).getTime();
+		const transcriptKey = datastore.key([kind, now]);
+		var task = {
+		  key: transcriptKey,
+		  data: {
+			timestamp: now,
+		    description: data
+		  }
+		};
+		datastore.save(task)
+				 .then(() => {
+				    console.log(`Saved ${task.key.name}: ${task.data.description}`);
+				 });
+	}
 }
