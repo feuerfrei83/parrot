@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/datastore": "^0.7.1",
     "@google-cloud/speech": "^0.7.0",
     "@google-cloud/storage": "^0.8.0",
     "node-record-lpcm16": "^0.2.0",
